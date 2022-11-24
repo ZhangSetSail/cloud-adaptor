@@ -204,9 +204,9 @@ func (r *RainbondRegionInit) createRainbondCR(kubeClient *kubernetes.Clientset, 
 	}
 	cluster.Spec.InstallMode = "WithoutPackage"
 	// default build cache mode set is `hostpath`
-	if cluster.Spec.CacheMode == "" {
-		cluster.Spec.CacheMode = "hostpath"
-	}
+	//if cluster.Spec.CacheMode == "" {
+	//	cluster.Spec.CacheMode = "hostpath"
+	//}
 
 	cluster.Spec.ConfigCompleted = true
 	// image hub must be nil, where not define
