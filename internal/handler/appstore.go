@@ -130,6 +130,18 @@ func (a *AppStoreHandler) Get(c *gin.Context) {
 	ginutil.JSON(c, appStore)
 }
 
+func (a *AppStoreHandler) UpdateRepo(c *gin.Context) {
+	name := c.Param("name")
+	err := a.appStore.UpdateRepo(name)
+	data := make(map[string]string)
+	data["status"] = "true"
+	if err != nil {
+		data["status"] = "false"
+		data["information"] = err.Error()
+	}
+	ginutil.JSON(c, data)
+}
+
 // Update updates the app store.
 // @Summary updates the app store..
 // @Tags appstores

@@ -125,6 +125,7 @@ func (r *Router) NewRouter() *gin.Engine {
 		appstorev1.GET("", r.appStore.Get)
 		appstorev1.PUT("", r.appStore.Update)
 		appstorev1.DELETE("", r.appStore.Delete)
+		appstorev1.GET("update-repo", r.appStore.UpdateRepo)
 		appstorev1.POST("/resync", r.appStore.Resync)
 		// TODO: change app to templates
 		appstorev1.GET("/apps", r.appStore.ListTemplates)

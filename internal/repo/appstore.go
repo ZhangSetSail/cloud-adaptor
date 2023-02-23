@@ -20,6 +20,7 @@ package repo
 
 import (
 	"context"
+	"io/ioutil"
 	"os"
 	"path"
 
@@ -40,6 +41,7 @@ type AppStoreRepo interface {
 	Get(ctx context.Context, eid, name string) (*domain.AppStore, error)
 	Delete(appStore *domain.AppStore) error
 	Update(ctx context.Context, appStore *domain.AppStore) error
+	UpdateRepo(name string) error
 	Resync(appStore *domain.AppStore)
 }
 
@@ -137,6 +139,10 @@ func (a *appStoreRepo) Update(ctx context.Context, appStore *domain.AppStore) er
 	as.Password = appStore.Password
 
 	return a.appStoreDao.Update(as)
+}
+
+func (a *appStoreRepo) UpdateRepo(name string) error {
+	return a.repoUpdate(name, ioutil.Discard)
 }
 
 func (a *appStoreRepo) Delete(appStore *domain.AppStore) error {

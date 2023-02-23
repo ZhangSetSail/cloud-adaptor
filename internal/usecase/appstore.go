@@ -52,6 +52,10 @@ func (a *AppStoreUsecase) Update(ctx context.Context, appStore *domain.AppStore)
 	return a.appStoreRepo.Update(ctx, appStore)
 }
 
+func (a *AppStoreUsecase) UpdateRepo(name string) error {
+	return a.appStoreRepo.UpdateRepo(name)
+}
+
 // Delete -
 func (a *AppStoreUsecase) Delete(ctx context.Context, appStore *domain.AppStore) error {
 	return a.appStoreRepo.Delete(appStore)
